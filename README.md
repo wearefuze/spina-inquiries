@@ -1,15 +1,9 @@
-![Spina CMS](http://www.denkwebsite.nl/spinacms.png)
-
-[Visit the website](http://www.spinacms.com)
-
 # Getting Started
 
-This is a Spina CMS plugin example, this project is meant to be cut into a gem and included in your parent Spina project.
-
-To start using this project locally, first clone it and add the following lines to your Gemfile:
+To start using this project locally, add the following lines to your Gemfile:
 
 ```
-gem 'spina-inquiries', path: '/path/to/the/project'
+gem 'spina-inquiries', github: 'DigitalReflow/spina-inquiries'
 ```
 
 Make sure you run the migration installer to get started.
@@ -20,16 +14,42 @@ rails g spina_inquiries:install
 
 This should copy the migration file required to create the Spina::Inquiry model.
 
-In your Spina project, make sure your selected theme has 'inquiries' added to plugins
-
-```
-self.plugins = ['inquiries']
-```
-
-Restart your server and head over to '/admin/pages', you should see your plugin located below the Media Library.
+Restart your server and head over to '/admin/inquiries', you should see your plugin located below the in the side menu.
 
 That's all it takes to get the plugin working :)
 
-Now modify away and make your own plugins!
+You will need to add the form to the consumer view and associated controller
+
+```
+module Spina
+  class InquiriesController < Spina::ApplicationController
+
+    def create
+      @inquiry = Inquiry.new(inquiry_params)
+
+      if @inquiry.save
+        InquiryMailer.inquiry(@inquiry).deliver
+      else
+        render :failed
+      end
+    end
+
+    private
+
+    def inquiry_params
+      params.require(:inquiry).permit(:archived, :email, :message, :name, :phone)
+    end
+  end
+end
+```
+
+```
+= simple_form_for Spina::Inquiry.new, remote: true do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :phone
+  = f.input :message
+  = f.submit
+```
 
 This project rocks and uses MIT-LICENSE.
