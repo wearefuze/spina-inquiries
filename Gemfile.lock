@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina-clients (0.0.1)
+    spina-inquiries (0.0.1)
       rails (~> 4.0)
 
 GEM
@@ -106,7 +106,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  spina-clients!
+  spina-inquiries!
   sqlite3
 
 BUNDLED WITH

@@ -1,5 +1,5 @@
 module Spina
-  module Clients
+  module Inquiries
     VERSION = "0.0.1"
   end
 end
