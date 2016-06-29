@@ -1,0 +1,31 @@
+.table-container
+  %table.table
+    %thead
+      %tr
+        %th{width: '25%'}= Spina::Client.human_attribute_name(:name)
+        %th{width: '25%'}= Spina::Client.human_attribute_name(:service)
+        %th{width: '25%'}= Spina::Client.human_attribute_name(:email)
+        %th{width: '15%'}= Spina::Client.human_attribute_name(:created_at)
+        %th{width: '10%'}
+
+    %tbody
+      - if @clients.present?
+        - @clients.each do |client|
+          %tr
+            %td
+              %p
+                = link_to client.name, spina.admin_client_path(client)
+            %td
+              %p
+                = client.service
+            %td
+              %p
+                = mail_to client.email
+            %td.nowrap
+              %small=l client.created_at, format: '%e %B %Y %H:%M'
+            %td.nowrap
+              = link_to t('spina.delete'), spina.admin_client_path(client), method: :delete, class: 'button button-danger button-link button-small', data: {confirm: t('spina.clients.delete_confirmation', subject: client.name)}
+      - else
+        %tr
+          %td.align-center{colspan: 3}
+            %em= t('spina.clients.empty')

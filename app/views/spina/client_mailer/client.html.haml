@@ -1,0 +1,26 @@
+%p= "To #{@current_account.name},"
+
+%p There is a contact form sent to the website. You can respond by replying to this email.
+
+%table
+  %tr
+    %td Client name
+    %td= @client.name
+  %tr
+    %td Client email
+    %td= @client.email
+  %tr
+    %td Client phone
+    %td= @client.phone
+  %tr
+    %td Service
+    %td= @client.service
+  %tr
+    %td Client goals
+    %td= @client.your_goals
+  %tr
+    %td Client lifestyle
+    %td= @client.your_lifestyle
+  %tr
+    %td Client routine
+    %td= @client.your_routine

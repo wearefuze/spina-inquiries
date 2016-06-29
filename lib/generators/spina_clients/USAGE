@@ -1,0 +1,8 @@
+Description:
+    Generates the migration file required to create the client model
+
+Example:
+    rails generate spina_clients:install
+
+    This will create:
+        db/migrate/timestamp_create_spina_clients_table.rb

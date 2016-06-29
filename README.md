@@ -3,18 +3,18 @@
 To start using this project locally, add the following lines to your Gemfile:
 
 ```
-gem 'spina-inquiries', github: 'DigitalReflow/spina-inquiries'
+gem 'spina-clients', github: 'DigitalReflow/spina-clients'
 ```
 
 Make sure you run the migration installer to get started.
 
 ```
-rails g spina_inquiries:install
+rails g spina_clients:install
 ```
 
-This should copy the migration file required to create the Spina::Inquiry model.
+This should copy the migration file required to create the Spina::Client model.
 
-Restart your server and head over to '/admin/inquiries', you should see your plugin located below the in the side menu.
+Restart your server and head over to '/admin/clients', you should see your plugin located below the in the side menu.
 
 That's all it takes to get the plugin working :)
 
@@ -22,13 +22,13 @@ You will need to add the form to the consumer view and associated controller
 
 ```
 module Spina
-  class InquiriesController < Spina::ApplicationController
+  class ClientsController < Spina::ApplicationController
 
     def create
-      @inquiry = Inquiry.new(inquiry_params)
+      @client = Client.new(client_params)
 
-      if @inquiry.save
-        InquiryMailer.inquiry(@inquiry).deliver
+      if @client.save
+        ClientMailer.client(@client).deliver
       else
         render :failed
       end
@@ -36,15 +36,15 @@ module Spina
 
     private
 
-    def inquiry_params
-      params.require(:inquiry).permit(:archived, :email, :message, :name, :phone)
+    def client_params
+      params.require(:client).permit(:archived, :email, :message, :name, :phone)
     end
   end
 end
 ```
 
 ```
-= simple_form_for Spina::Inquiry.new, remote: true do |f|
+= simple_form_for Spina::Client.new, remote: true do |f|
   = f.input :name
   = f.input :email
   = f.input :phone

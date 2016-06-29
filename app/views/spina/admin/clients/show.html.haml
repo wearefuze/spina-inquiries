@@ -1,0 +1,25 @@
+.table-container.table-form
+  %table.table
+    %tr
+      %th= Spina::Client.human_attribute_name(:name)
+      %td= @client.name
+    %tr
+      %th= Spina::Client.human_attribute_name(:email)
+      %td= @client.email
+    %tr
+      %th= Spina::Client.human_attribute_name(:phone)
+      %td= @client.phone
+    %tr
+      %td= Spina::Client.human_attribute_name(:service)
+      %td= @client.service
+    %tr
+      %td= Spina::Client.human_attribute_name(:your_lifestyle)
+      %td= @client.your_lifestyle
+    %tr
+      %td= Spina::Client.human_attribute_name(:your_goals)
+      %td= @client.your_goals
+    %tr
+      %td= Spina::Client.human_attribute_name(:your_routine)
+      %td= @client.your_routine
+
+  = link_to t('spina.delete'), spina.admin_client_path(@client), method: :delete, class: 'button button-danger button-link', data: {confirm: t('spina.clients.delete_confirmation', subject: @client.name)}

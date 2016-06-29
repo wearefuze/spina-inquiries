@@ -1,5 +1,5 @@
 require "reviews/engine"
 require 'negative_captcha'
 
-module Inquiries
+module Clients
 end
