@@ -1,0 +1,8 @@
+%li.dd-item
+  %div.dd-item-inner
+    = link_to spina.admin_inquiry_path(inquiry), class: 'button button-link button-small sortable-link' do
+      = inquiry.name
+    %span.pull-right
+      - unless inquiry.archived?
+        = link_to t('spina.inquiries.mark_as_read'), spina.mark_as_read_admin_inquiry_path(inquiry), method: :patch, class: 'button button-link button-small', data: {icon: 'k'}
+      = link_to t('spina.delete'), spina.admin_inquiry_path(inquiry), method: :delete, class: 'button button-danger button-link button-small', data: {confirm: t('spina.inquiries.delete_confirmation', subject: inquiry.name)}

@@ -1,40 +1,26 @@
-- content_for(:tertiary_navigation) do
-  %nav.tabs
+- content_for(:permanent_notice) do
+  - unless current_account.robots_allowed?
+    .permanent-notice.permanent-notice-info
+      = icon('search')
+      %p
+        =t 'spina.pages.invisible_to_search_engines'
+        %small=t 'spina.pages.invisible_to_search_engines_description'
+
+%header#header
+  .breadcrumbs= render_breadcrumbs seperator: '<div class="divider"></div>'
+  %nav#secondary.tabs
     %ul
-      %li
-        = link_to spina.admin_inquiries_path do
-          = t('spina.inquiries.all')
-      %li.active
-        = link_to spina.inbox_admin_inquiries_path do
-          = t('spina.inquiries.inbox')
+      %li{class: "#{'active' if current_page?(spina.inbox_admin_inquiries_path)}"}
+        = link_to "Inbox", spina.inbox_admin_inquiries_path
+      %li{class: "#{'active' if current_page?(spina.admin_inquiries_path)}"}
+        = link_to "All messages", spina.admin_inquiries_path
 
-.table-container
-  %table.table
-    %thead
-      %tr
-        %th{width: 200}= Spina::Inquiry.human_attribute_name(:name)
-        %th= Spina::Inquiry.human_attribute_name(:message)
-        %th{colspan: 2}
+.filters
 
-    %tbody
-      - if @inquiries.present?
-        - @inquiries.each do |inquiry|
-          %tr
-            %td
-              %p
-                %strong= inquiry.name
-
-            %td
-              %p= link_to inquiry.summary, spina.inbox_show_admin_inquiry_path(inquiry)
-
-            %td.nowrap
-              = l inquiry.created_at, format: '%e %B %Y %H:%M'
-
-            %td.nowrap
-              = link_to t('spina.inquiries.mark_as_read'), spina.mark_as_read_admin_inquiry_path(inquiry), method: :patch, class: 'button button-link button-small', data: {icon: 'k'}
-              = link_to t('spina.delete'), spina.admin_inquiry_path(inquiry), method: :delete, class: 'button button-danger button-link button-small', data: {confirm: t('spina.inquiries.delete_confirmation', subject: inquiry.name)}
-
-      - else
-        %tr
-          %td.align-center{colspan: 3}
-            %em= t('spina.inquiries.empty_inbox')
+.well
+  - if @inquiries.any?
+    .dd#pages_list
+      %ol.dd-list
+        = render partial: 'inquiry', collection: @inquiries
+  - else
+    %em No new messages

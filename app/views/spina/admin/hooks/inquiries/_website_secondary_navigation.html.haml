@@ -1,5 +1,3 @@
 %li{ class: ('active' if current_admin_path.start_with?('/inquiries')) }
-  = link_to spina.admin_inquiries_path do
-    %i.icon.icon-mail-outline
+  = link_to spina.inbox_admin_inquiries_path do
     = plugin.name
-    %small Here's were you'll find all of your inquries from your website

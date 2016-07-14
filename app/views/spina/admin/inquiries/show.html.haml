@@ -1,17 +1,36 @@
-.table-container.table-form
-  %table.table
-    %tr
-      %th= Spina::Inquiry.human_attribute_name(:name)
-      %td= @inquiry.name
-    %tr
-      %th= Spina::Inquiry.human_attribute_name(:email)
-      %td= @inquiry.email
-    %tr
-      %th= Spina::Inquiry.human_attribute_name(:phone)
-      %td= @inquiry.phone
-    %tr
-      %td
-      %td= simple_format @inquiry.message
+- content_for(:permanent_notice) do
+  - unless current_account.robots_allowed?
+    .permanent-notice.permanent-notice-info
+      = icon('search')
+      %p
+        =t 'spina.pages.invisible_to_search_engines'
+        %small=t 'spina.pages.invisible_to_search_engines_description'
+
+%header#header
+  .breadcrumbs= render_breadcrumbs seperator: '<div class="divider"></div>'
+
+.well
+  .horizontal-form
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Inquiry.human_attribute_name(:name)
+      .horizontal-form-content
+        = @inquiry.name
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Inquiry.human_attribute_name(:email)
+      .horizontal-form-content
+        = @inquiry.email
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Inquiry.human_attribute_name(:phone)
+      .horizontal-form-content
+        = @inquiry.phone
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Inquiry.human_attribute_name(:message)
+      .horizontal-form-content
+        = @inquiry.message
 
 .pull-right
   - unless @inquiry.archived?

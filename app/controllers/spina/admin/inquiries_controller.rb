@@ -2,9 +2,7 @@ module Spina
   module Admin
     class InquiriesController < AdminController
 
-      authorize_resource class: Inquiry
-
-      layout 'spina/admin/website'
+      layout 'spina/admin/admin'
 
       def show
         @inquiry = Inquiry.find(params[:id])
