@@ -31,6 +31,11 @@
         = Spina::Inquiry.human_attribute_name(:message)
       .horizontal-form-content
         = @inquiry.message
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Inquiry.human_attribute_name(:created_at)
+      .horizontal-form-content
+        = @inquiry.created_at.strftime("%e %B %Y")
 
 .pull-right
   - unless @inquiry.archived?
