@@ -57,36 +57,6 @@
 
                                 <%= yield %>
 
-                                <p>Yours sincerly,</p>
-
-                                <p>
-                                  <% if @current_account.name %>
-                                    <%= @current_account.name %>
-                                    <br/>
-                                  <% end %>
-                                  <% if @current_account.address %>
-                                    <%= @current_account.address %>
-                                    <br/>
-                                  <% end %>
-                                  <% if @current_account.postal_code %>
-                                    <%= @current_account.postal_code %>
-                                    <br/>
-                                  <% end %>
-                                  <% if @current_account.city %>
-                                    <%= @current_account.city %>
-                                    <br/>
-                                  <% end %>
-                                  <% if @current_account.phone %>
-                                    <%= @current_account.phone %>
-                                    <br/>
-                                  <% end %>
-                                  <% if @current_account.email %>
-                                    <%= @current_account.email %>
-                                    <br/>
-                                  <% end %>
-                                </p>
-                                <br/>
-
                               </div>
                             </td>
                           </tr>
