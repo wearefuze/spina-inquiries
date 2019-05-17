@@ -1,3 +1,5 @@
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dankmitchell/spina-inquiries)](https://dependabot.com)
+
 # Getting Started
 
 To start using this project locally, add the following lines to your Gemfile:
