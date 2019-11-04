@@ -5,7 +5,7 @@
 To start using this project locally, add the following lines to your Gemfile:
 
 ```
-gem 'spina-inquiries', github: 'DigitalReflow/spina-inquiries'
+gem 'spina-inquiries', github: 'dankmitchell/spina-inquiries''
 ```
 
 Make sure you run the migration installer to get started.
@@ -22,15 +22,15 @@ That's all it takes to get the plugin working :)
 
 You will need to add the form to the consumer view and associated controller
 
-```
+```ruby
 module Spina
   class InquiriesController < Spina::ApplicationController
 
     def create
-      @inquiry = Inquiry.new(inquiry_params)
+      @inquiry = Spina::Inquiry.new(inquiry_params)
 
       if @inquiry.save
-        InquiryMailer.inquiry(@inquiry).deliver
+        Spina::InquiryMailer.inquiry(@inquiry).deliver_now
       else
         render :failed
       end

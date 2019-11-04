@@ -7,9 +7,9 @@ require "spina/inquiries/version"
 Gem::Specification.new do |s|
   s.name        = "spina-inquiries"
   s.version     = Spina::Inquiries::VERSION
-  s.authors     = ["Bram Jetten"]
-  s.email       = ["bram@denkgroot.com"]
-  s.homepage    = "http://www.denkgroot.com"
+  s.authors     = ["Dan Mitchell"]
+  s.email       = ["dan@danmitchell.co.uk"]
+  s.homepage    = "https://www.danmitchell.co.uk/"
   s.summary     = "Inquiry system for Spina"
   s.description = "Plugin for Spina CMS to include inquiries on your website"
 
