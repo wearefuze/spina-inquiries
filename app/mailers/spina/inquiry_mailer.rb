@@ -8,8 +8,9 @@ module Spina
 
       mail(
         to: "\"#{@current_account.name}\" <#{ @current_account.email }>",
-        from: "\"#{@inquiry.name}\" <#{@inquiry.email}>",
-        subject: @inquiry.message.truncate(97, separator: ' ')
+        from: "no-reply@#{@current_account.name.parameterize}.com",
+        reply_to: "#{@inquiry.email}",
+        subject: "Website enquiry"
       )
     end
 
