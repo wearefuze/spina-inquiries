@@ -2,6 +2,7 @@
   %div.dd-item-inner
     = link_to spina.admin_inquiry_path(inquiry), class: 'button button-link button-small sortable-link' do
       = inquiry.name
+      %span.small #{inquiry.created_at.strftime("%e %B %Y")}
     %span.pull-right
       - unless inquiry.archived?
         = link_to t('spina.inquiries.mark_as_read'), spina.mark_as_read_admin_inquiry_path(inquiry), method: :patch, class: 'button button-link button-small', data: {icon: 'k'}
