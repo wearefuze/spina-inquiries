@@ -2,28 +2,14 @@ module Spina
   class Inquiry < ActiveRecord::Base
     include ActionView::Helpers::TextHelper
 
-    validates :email,
-              presence: {
-                message: 'Enter email address'
-              },
-              format: {
-                with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                message: 'Enter a valid email address (e.g john@doe.com)'
-              }
-    validates :name,
-              presence: {
-                message: 'Enter name'
-              }
-    validates :message,
-              presence: {
-                message: 'Enter message'
-              }
+    VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
-    scope :new_messages, -> { where(archived: false) }
-    scope :sorted, -> { order("created_at DESC") }
+    validates :name, presence: { message: "Enter name" }
+    validates :email, presence: { message: "Enter email" }
+    validates :email, format: { with: Inquiry::VALID_EMAIL_REGEX, message: "Enter a valid email" }
+    validates :message, presence: { message: "Enter message" }
 
-    def summary
-      truncate(message, length: 120)
-    end
+    scope :newest_first, -> { order(created_at: :desc) }
+    scope :marked_as_read, -> { where(read: true) }
   end
 end

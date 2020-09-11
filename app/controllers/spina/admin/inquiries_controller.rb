@@ -1,35 +1,27 @@
 module Spina
   module Admin
     class InquiriesController < AdminController
-
-      layout 'spina/admin/admin'
+      layout "spina/admin/admin"
 
       def show
         @inquiry = Inquiry.find(params[:id])
-        add_breadcrumb I18n.t('spina.inquiries.all'), spina.admin_inquiries_path
+        add_breadcrumb I18n.t("spina.inquiries.all"), spina.admin_inquiries_path
         add_breadcrumb @inquiry.name
-      end
-
-      def inbox_show
-        @inquiry = Inquiry.find(params[:id])
-        add_breadcrumb I18n.t('spina.inquiries.inbox'), spina.inbox_admin_inquiries_path
-        add_breadcrumb @inquiry.name
-        render :show
       end
 
       def index
-        add_breadcrumb I18n.t('spina.inquiries.all'), spina.admin_inquiries_path
-        @inquiries = Inquiry.sorted
+        add_breadcrumb I18n.t("spina.inquiries.all"), spina.admin_inquiries_path
+        @inquiries = Inquiry.newest_first
       end
 
-      def inbox
-        add_breadcrumb I18n.t('spina.inquiries.inbox'), spina.inbox_admin_inquiries_path
-        @inquiries = Inquiry.new_messages.sorted
+      def read
+        add_breadcrumb I18n.t("spina.inquiries.inbox"), spina.read_admin_inquiries_path
+        @inquiries = Inquiry.newest_first.read
       end
 
       def mark_as_read
         @inquiry = Inquiry.find(params[:id])
-        @inquiry.update_attribute(:archived, true)
+        @inquiry.update(read: true)
         redirect_to spina.inbox_admin_inquiries_path
       end
 
@@ -42,7 +34,7 @@ module Spina
       private
 
       def inquiry_params
-        params.require(:inquiry).permit(:archived, :email, :message, :name, :phone)
+        params.require(:inquiry).permit(:read, :email, :message, :name, :phone)
       end
     end
   end

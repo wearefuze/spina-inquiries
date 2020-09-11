@@ -12,8 +12,8 @@
     %ul
       %li{class: "#{'active' if current_page?(spina.inbox_admin_inquiries_path)}"}
         = link_to "Inbox", spina.inbox_admin_inquiries_path
-      %li{class: "#{'active' if current_page?(spina.admin_inquiries_path)}"}
-        = link_to "All messages", spina.admin_inquiries_path
+      %li{class: "#{'active' if current_page?(spina.read_admin_inquiries_path)}"}
+        = link_to "Read", spina.read_admin_inquiries_path
 
 .filters
 
@@ -23,4 +23,4 @@
       %ol.dd-list
         = render partial: 'inquiry', collection: @inquiries
   - else
-    %em No new messages
+    %em No messages
