@@ -11,5 +11,6 @@ module Spina
 
     scope :newest_first, -> { order(created_at: :desc) }
     scope :marked_as_read, -> { where(read: true) }
+    scope :not_marked_as_read, -> { where(read: false) }
   end
 end

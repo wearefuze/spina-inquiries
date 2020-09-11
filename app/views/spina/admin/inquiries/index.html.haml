@@ -10,12 +10,14 @@
   .breadcrumbs= render_breadcrumbs seperator: '<div class="divider"></div>'
   %nav#secondary.tabs
     %ul
-      %li{class: "#{'active' if current_page?(spina.inbox_admin_inquiries_path)}"}
-        = link_to "Inbox", spina.inbox_admin_inquiries_path
+      %li{class: "#{'active' if current_page?(spina.admin_inquiries_path)}"}
+        = link_to spina.admin_inquiries_path do
+          %span Inbox
+          %sup (#{@inquiries_not_read_count})
       %li{class: "#{'active' if current_page?(spina.read_admin_inquiries_path)}"}
-        = link_to "Read", spina.read_admin_inquiries_path
-
-.filters
+        = link_to spina.read_admin_inquiries_path do
+          %span Read
+          %sup (#{@inquiries_read_count})
 
 .well
   - if @inquiries.any?

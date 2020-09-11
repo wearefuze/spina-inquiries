@@ -1,57 +1,74 @@
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dankmitchell/spina-inquiries)](https://dependabot.com)
 
-# Getting Started
+# Spina Inquiries
 
-To start using this project locally, add the following lines to your Gemfile:
+Easily setup inquiries in your Spina app 📨
 
+### Install
+
+```ruby
+gem 'spina-inquiries', github: 'dankmitchell/spina-inquiries'
 ```
-gem 'spina-inquiries', github: 'dankmitchell/spina-inquiries''
-```
 
-Make sure you run the migration installer to get started.
+### Generator
 
-```
+```ruby
 rails g spina_inquiries:install
 ```
 
-This should copy the migration file required to create the Spina::Inquiry model.
+Restart your server and head over to [/admin/inquiries](http://localhost:3000/admin/inquiries).
 
-Restart your server and head over to '/admin/inquiries', you should see your plugin located below the in the side menu.
+### Frontend
 
-That's all it takes to get the plugin working :)
-
-You will need to add the form to the consumer view and associated controller
+#### Controller
 
 ```ruby
 module Spina
   class InquiriesController < Spina::ApplicationController
+
+    def index
+      @inquiry = Spina::Inquiry.new
+    end
 
     def create
       @inquiry = Spina::Inquiry.new(inquiry_params)
 
       if @inquiry.save
         Spina::InquiryMailer.inquiry(@inquiry).deliver_now
+        redirect_to spina.inquiries_url
+        flash[:notice] = 'Thank you for your message.'
       else
-        render :failed
+        render :index
       end
     end
 
     private
 
     def inquiry_params
-      params.require(:inquiry).permit(:archived, :email, :message, :name, :phone)
+      params.require(:inquiry).permit(:read, :email, :message, :name, :phone)
     end
   end
 end
 ```
 
+#### View
+
+`spina/inquiries/index`
+
 ```
-= simple_form_for Spina::Inquiry.new, remote: true do |f|
-  = f.input :name
-  = f.input :email
-  = f.input :phone
-  = f.input :message
-  = f.submit
+<%= form_for @inquiry do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :email %>
+  <%= f.phone_field :phone %>
+  <%= f.text_area :message %>
+  <%= f.submit "Submit" %>
+<% end %>
 ```
 
-This project rocks and uses MIT-LICENSE.
+### Routes
+
+```ruby
+Spina::Engine.routes.draw do
+  resources :inquiries
+end
+```
