@@ -1,5 +1,7 @@
 module Spina
   class InquiriesController < Spina::ApplicationController
+    layout "default/application"
+
     def index
       @inquiry = Spina::Inquiry.new
     end
