@@ -40,10 +40,10 @@ module Spina
       end
 
       def inquiries_count
-        @inquiries = Inquiry.all
+        inquiries = Inquiry.all
 
-        @inquiries_read_count = @inquiries.marked_as_read.count
-        @inquiries_not_read_count = @inquiries.not_marked_as_read.count
+        @inquiries_read_count = inquiries.marked_as_read.count
+        @inquiries_not_read_count = inquiries.not_marked_as_read.count
       end
     end
   end

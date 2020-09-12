@@ -35,8 +35,7 @@ module Spina
 
       if @inquiry.save
         Spina::InquiryMailer.inquiry(@inquiry).deliver_now
-        redirect_to spina.inquiries_url
-        flash[:notice] = 'Thank you for your message.'
+        redirect_to spina.inquiries_url, notice: 'Thank you for your message!'
       else
         render :index
       end
