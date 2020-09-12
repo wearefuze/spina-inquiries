@@ -1,6 +1,6 @@
-%p= "To #{@current_account.name},"
+%h1= "To #{@current_account.name},"
 
-%p There is a contact form sent to the website. You can respond by replying to this email.
+%p You've recieved a message from your website. Respond by replying to this email.
 
 %table
   %tr
@@ -10,7 +10,7 @@
     %td Email
     %td= @inquiry.email
   %tr
-    %td Contact number
+    %td Phone
     %td= @inquiry.phone
   %tr
     %td Message

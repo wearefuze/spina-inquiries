@@ -5,7 +5,8 @@ class CreateSpinaInquiriesTable < ActiveRecord::Migration[4.2]
       t.string :email
       t.string :phone
       t.text :message
-      t.boolean :archived, default: false
+      t.boolean :read, default: false
+
       t.timestamps
     end
   end
