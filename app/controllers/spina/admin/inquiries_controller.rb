@@ -7,17 +7,17 @@ module Spina
 
       def show
         @inquiry = Inquiry.find(params[:id])
-        add_breadcrumb I18n.t("spina.inquiries.all"), spina.admin_inquiries_path
+        add_breadcrumb I18n.t("spina.inquiries.title"), spina.admin_inquiries_path
         add_breadcrumb @inquiry.name
       end
 
       def index
-        add_breadcrumb I18n.t("spina.inquiries.all"), spina.admin_inquiries_path
+        add_breadcrumb I18n.t("spina.inquiries.title"), spina.admin_inquiries_path
         @inquiries = Inquiry.newest_first.not_marked_as_read
       end
 
       def read
-        add_breadcrumb I18n.t("spina.inquiries.inbox"), spina.read_admin_inquiries_path
+        add_breadcrumb I18n.t("spina.inquiries.read"), spina.read_admin_inquiries_path
         @inquiries = Inquiry.newest_first.marked_as_read
       end
 
@@ -30,7 +30,7 @@ module Spina
       def destroy
         @inquiry = Inquiry.find(params[:id])
         @inquiry.destroy
-        redirect_to spina.admin_inquiries_path
+        redirect_back(fallback_location: spina.admin_inquiries_path)
       end
 
       private

@@ -1,6 +1,6 @@
 module Spina
   class InquiryMailer < ActionMailer::Base
-    layout "spina/email"
+    layout "spina/inquiry"
 
     def inquiry(inquiry)
       @inquiry = inquiry
@@ -10,7 +10,7 @@ module Spina
         to: "\"#{@current_account.name}\" <#{@current_account.email}>",
         from: "no-reply@#{@current_account.name.parameterize}.com",
         reply_to: "#{@inquiry.email}",
-        subject: "Website enquiry",
+        subject: "You've recieved a message from your website",
       )
     end
   end
