@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Spina
   module Admin
     class InquiriesController < AdminController
       layout "spina/admin/admin"
 
-      before_action :inquiries_count, only: [:index, :read]
+      before_action :inquiries_count, only: %i[index read]
 
       def show
         @inquiry = Inquiry.find(params[:id])
@@ -33,7 +35,7 @@ module Spina
         redirect_back(fallback_location: spina.admin_inquiries_path)
       end
 
-      private
+    private
 
       def inquiry_params
         params.require(:inquiry).permit(:read, :email, :message, :name, :phone)

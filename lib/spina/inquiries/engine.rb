@@ -11,7 +11,7 @@ module Spina
       end
 
       config.to_prepare do
-        Rails.application.config.assets.precompile += %w(spina/inquiries/admin/inquiries.css)
+        Rails.application.config.assets.precompile += %w[spina/inquiries/admin/inquiries.css]
       end
 
       ActiveSupport.on_load(:action_view) do

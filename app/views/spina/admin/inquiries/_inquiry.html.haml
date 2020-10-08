@@ -1,6 +1,7 @@
 %li.dd-item
   %div.dd-item-inner
     = link_to spina.admin_inquiry_path(inquiry), class: 'button button-link button-small sortable-link' do
+      = new_inquiry_label(inquiry)
       = inquiry.name
       %span.small (#{inquiry.created_at.strftime("%e %B %Y")})
     = new_inquiry_label(inquiry)
