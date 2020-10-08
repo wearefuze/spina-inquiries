@@ -1,4 +1,4 @@
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path("lib", __dir__)
 
 require "spina/inquiries/version"
 
@@ -14,5 +14,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 5.0"
+  s.add_runtime_dependency "invisible_captcha", "~> 1.1"
+  s.add_runtime_dependency "spina", ">= 1.0.0"
 end

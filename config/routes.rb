@@ -1,8 +1,9 @@
 Spina::Engine.routes.draw do
-  resources :inquiries
+  resources :inquiries, path: "contact"
+  get "/thank-you", to: "inquiries#thanks"
 
   namespace :admin do
-    resources :inquiries, only: [:index, :show, :destroy] do
+    resources :inquiries, only: %i[index show destroy] do
       collection do
         get :read
       end

@@ -1,6 +1,8 @@
 = flash[:notice]
 
 = form_for @inquiry do |f|
+  = invisible_captcha
+
   - if @inquiry.errors.any?
     %p #{pluralize(@inquiry.errors.count, "error")} prevented the form from being submitted:
     %ul
