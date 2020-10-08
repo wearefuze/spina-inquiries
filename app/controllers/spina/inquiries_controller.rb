@@ -2,10 +2,11 @@
 
 module Spina
   class InquiriesController < Spina::ApplicationController
-    before_action :set_page
-    invisible_captcha only: %i[create update], on_spam: :spam_redirect
-
     layout "default/application"
+
+    before_action :set_page
+    
+    invisible_captcha only: %i[create update], on_spam: :spam_redirect
 
     def index
       @inquiry = Spina::Inquiry.new
