@@ -15,6 +15,6 @@ module Spina
     scope :marked_as_read, -> { where(read: true) }
     scope :not_marked_as_read, -> { where(read: false) }
 
-    HONEYPOTS = %w[nickname first_pet favorite_book team_name]
+    HONEYPOTS = (1..10).map { ('a'..'z').to_a.shuffle[0, 10].join }
   end
 end

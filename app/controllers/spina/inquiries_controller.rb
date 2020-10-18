@@ -41,8 +41,7 @@ module Spina
 
     def check_spam
       scope = controller_name.singularize
-      keys = params[scope].keys
-      honeypot = (Inquiry::HONEYPOTS & keys).first
+      honeypot = (Inquiry::HONEYPOTS & params[scope].keys).first
 
       if params[scope][honeypot.to_sym].present?
         redirect_to root_path
