@@ -4,4 +4,4 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "invisible_captcha", "~> 1.1"
+gem "invisible_captcha", "~> 2.0"
