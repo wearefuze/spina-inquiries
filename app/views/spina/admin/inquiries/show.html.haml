@@ -9,36 +9,33 @@
 %header#header
   .breadcrumbs= render_breadcrumbs seperator: '<div class="divider"></div>'
 
+  .pull-right
+    - if @inquiry.unread?
+      = link_to 'Mark as read', spina.mark_as_read_admin_inquiry_path(@inquiry), method: :patch, class: 'button', style: 'margin-right: 12px'
+
+    - if @inquiry.valid?
+      = link_to 'Mark as spam', spina.mark_as_spam_admin_inquiry_path(@inquiry), method: :patch, class: 'button', style: 'margin-right: 12px'
+
+    = link_to 'Delete', spina.admin_inquiry_path(@inquiry), method: :delete, class: 'button button-danger'
+
 .well
-  .horizontal-form
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Inquiry.human_attribute_name(:name)
-      .horizontal-form-content
-        = @inquiry.name
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Inquiry.human_attribute_name(:email)
-      .horizontal-form-content
-        = @inquiry.email
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Inquiry.human_attribute_name(:phone)
-      .horizontal-form-content
-        = @inquiry.phone
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Inquiry.human_attribute_name(:message)
-      .horizontal-form-content
-        = @inquiry.message
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Inquiry.human_attribute_name(:created_at)
-      .horizontal-form-content
-        = @inquiry.created_at.strftime("%e %B %Y")
+  %table.inquiry-table
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th Phone
+        %th Sent
 
-.pull-right
-  - unless @inquiry.read?
-    = link_to t('spina.inquiries.mark_as_read'), spina.mark_as_read_admin_inquiry_path(@inquiry), method: :patch, class: 'button', data: { icon: 'k' }
+    %tbody
+      %tr
+        %td= @inquiry.name
+        %td= mail_to @inquiry.email, @inquiry.email
+        %td= link_to @inquiry.phone, "tel:#{@inquiry.phone}"
+        %td= @inquiry.sent_at
 
-  = link_to t('spina.delete'), spina.admin_inquiry_path(@inquiry), method: :delete, class: 'button button-danger button-link', data: { confirm: t('spina.inquiries.delete_confirmation', subject: @inquiry.name) }
+.well.inquiry-message
+  %h6 Message
+
+  %div
+    = simple_format @inquiry.message

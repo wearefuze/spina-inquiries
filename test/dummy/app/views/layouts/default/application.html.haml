@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title= current_account.name
+    = csrf_meta_tags
+  %body
+    .container
+      = render 'default/shared/navigation'
+      = yield

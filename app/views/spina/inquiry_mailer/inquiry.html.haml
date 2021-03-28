@@ -1,17 +1,20 @@
 %h1= "To #{@current_account.name},"
 
-%p You've recieved a message from your website. Respond by replying to this email.
+%p You've recieved a message from your website.
 
 %table
   %tr
     %td Name
     %td= @inquiry.name
+
   %tr
     %td Email
-    %td= @inquiry.email
+    %td= mail_to @inquiry.email, @inquiry.email
+
   %tr
     %td Phone
-    %td= @inquiry.phone
+    %td= link_to @inquiry.phone, "tel:#{@inquiry.phone}"
+
   %tr
     %td Message
     %td= simple_format(@inquiry.message)
