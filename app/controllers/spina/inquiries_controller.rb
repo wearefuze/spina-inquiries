@@ -28,7 +28,7 @@ module Spina
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:read, :email, :message, :name, :phone)
+      params.require(:inquiry).permit(:email, :message, :name, :phone, :read, :spam)
     end
 
     def set_page

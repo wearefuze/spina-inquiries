@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_328_001_345) do
+ActiveRecord::Schema.define(version: 20_210_328_011_114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -64,17 +64,6 @@ ActiveRecord::Schema.define(version: 20_210_328_001_345) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['media_folder_id'], name: 'index_spina_images_on_media_folder_id'
-  end
-
-  create_table 'spina_inquiries', id: :serial, force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'phone'
-    t.text 'message'
-    t.boolean 'read', default: false
-    t.boolean 'spam', default: false
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
   end
 
   create_table 'spina_layout_parts', id: :serial, force: :cascade do |t|

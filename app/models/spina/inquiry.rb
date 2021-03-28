@@ -162,7 +162,7 @@ module Spina
       !read
     end
 
-    def valid?
+    def not_spam?
       !spam
     end
 

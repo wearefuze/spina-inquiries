@@ -13,7 +13,7 @@
     - if @inquiry.unread?
       = link_to 'Mark as read', spina.mark_as_read_admin_inquiry_path(@inquiry), method: :patch, class: 'button', style: 'margin-right: 12px'
 
-    - if @inquiry.valid?
+    - if @inquiry.not_spam?
       = link_to 'Mark as spam', spina.mark_as_spam_admin_inquiry_path(@inquiry), method: :patch, class: 'button', style: 'margin-right: 12px'
 
     = link_to 'Delete', spina.admin_inquiry_path(@inquiry), method: :delete, class: 'button button-danger'
