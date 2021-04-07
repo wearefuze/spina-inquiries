@@ -16,6 +16,9 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.4"
+  s.add_dependency 'spam_email', '~> 0.1.3'
+  s.add_dependency "filters_spam", "~> 0.4"
+  s.add_dependency "invisible_captcha", "~> 2.0"
 
   s.add_development_dependency 'spam_email', '~> 0.1.3'
   s.add_development_dependency "filters_spam", "~> 0.4"
