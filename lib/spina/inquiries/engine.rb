@@ -1,4 +1,8 @@
 require "spina"
+require "pg"
+require "spam_email"
+require "filters_spam"
+require "invisible_captcha"
 
 module Spina
   module Inquiries
