@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 Dummy::Application.routes.draw do
+  mount Spina::Engine => '/'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

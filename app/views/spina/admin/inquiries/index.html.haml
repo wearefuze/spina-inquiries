@@ -8,16 +8,20 @@
 
 %header#header
   .breadcrumbs= render_breadcrumbs seperator: '<div class="divider"></div>'
+
   %nav#secondary.tabs
     %ul
-      %li{class: "#{'active' if current_page?(spina.admin_inquiries_path)}"}
-        = link_to spina.admin_inquiries_path do
-          %span Inbox
-          %sup (#{@inquiries_not_read_count})
-      %li{class: "#{'active' if current_page?(spina.read_admin_inquiries_path)}"}
-        = link_to spina.read_admin_inquiries_path do
-          %span Read
-          %sup (#{@inquiries_read_count})
+      %li{class: "#{'active' if current_page?(admin_inquiries_path)}"}
+        = link_to 'Inbox', admin_inquiries_path
+
+      %li{class: "#{'active' if current_page?(read_admin_inquiries_path)}"}
+        = link_to 'Read', read_admin_inquiries_path
+
+      %li{class: "#{'active' if current_page?(spam_admin_inquiries_path)}"}
+        = link_to 'Spam', spam_admin_inquiries_path
+
+  #header_actions
+    = link_to 'Empty spam', destroy_spam_admin_inquiries_path, method: :patch, class: 'button button-small button-danger'
 
 .well
   - if @inquiries.any?
@@ -25,4 +29,4 @@
       %ol.dd-list
         = render partial: 'inquiry', collection: @inquiries
   - else
-    %em= t('spina.inquiries.empty')
+    %em No messages

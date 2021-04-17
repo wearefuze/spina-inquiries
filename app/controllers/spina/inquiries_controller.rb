@@ -5,7 +5,7 @@ module Spina
     layout "default/application"
 
     before_action :set_page
-    
+
     invisible_captcha only: %i[create update], on_spam: :spam_redirect
 
     def index
@@ -16,8 +16,8 @@ module Spina
       @inquiry = Spina::Inquiry.new(inquiry_params)
 
       if @inquiry.save
-        Spina::InquiryMailer.inquiry(@inquiry).deliver_now
-        redirect_to spina.inquiries_url, notice: "Thank you for your message!"
+        Spina::InquiryMailer.inquiry(@inquiry).deliver_now unless @inquiry.invalid? || @inquiry.spam?
+        redirect_to thanks_inquiries_path
       else
         render :index
       end
@@ -28,7 +28,7 @@ module Spina
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:read, :email, :message, :name, :phone)
+      params.require(:inquiry).permit(:email, :message, :name, :phone, :read, :spam)
     end
 
     def set_page

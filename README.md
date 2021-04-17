@@ -8,11 +8,7 @@ Easily setup inquiries in your Spina app 📨
 
 ```ruby
 gem 'spina-inquiries', github: 'dankmitchell/spina-inquiries'
-```
 
-### Generator
-
-```ruby
 rails g spina_inquiries:install
 ```
 

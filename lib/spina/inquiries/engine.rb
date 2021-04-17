@@ -1,3 +1,9 @@
+require "spina"
+require "pg"
+require "spam_email"
+require "filters_spam"
+require "invisible_captcha"
+
 module Spina
   module Inquiries
     class Engine < ::Rails::Engine
@@ -12,10 +18,6 @@ module Spina
 
       config.to_prepare do
         Rails.application.config.assets.precompile += %w[spina/inquiries/admin/inquiries.css]
-      end
-
-      ActiveSupport.on_load(:action_view) do
-        include Spina::Inquiries::AdminHelpers
       end
     end
   end
