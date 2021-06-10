@@ -6,7 +6,7 @@ module Spina
 
     before_action :set_page
 
-    invisible_captcha only: %i[create update], on_spam: :spam_redirect
+    invisible_captcha only: :create, on_spam: :spam_redirect
 
     def index
       @inquiry = Spina::Inquiry.new
