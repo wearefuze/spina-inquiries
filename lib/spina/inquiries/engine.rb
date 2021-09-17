@@ -11,7 +11,7 @@ module Spina
 
       config.before_initialize do
         ::Spina::Plugin.register do |plugin|
-          plugin.name = "Inquiries"
+          plugin.name = "inquiries"
           plugin.namespace = "inquiries"
         end
 

@@ -5,6 +5,8 @@ module Spina
     class InquiriesController < AdminController
       layout "spina/admin/admin"
 
+      admin_section :inquiries
+
       before_action :set_inquiry, only: %i[mark_as_read destroy]
       before_action :set_breadcrumb, only: %i[index read]
 
