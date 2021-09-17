@@ -15,7 +15,7 @@ module Spina
     def create
       @inquiry = Spina::Inquiry.new(inquiry_params)
 
-      if @inquiry.save && !@inquiry.spam?
+      if @inquiry.save
         Spina::InquiryMailer.inquiry(@inquiry).deliver_now
         redirect_to thanks_inquiries_path
       else
@@ -28,7 +28,7 @@ module Spina
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:email, :message, :name, :phone, :read)
+      params.require(:inquiry).permit(:email, :message, :name, :phone, :read, :spam)
     end
 
     def set_page

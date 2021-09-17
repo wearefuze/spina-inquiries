@@ -16,7 +16,7 @@
 
 <div class="p-8">
   <% if @inquiries.any? %>
-    <div class="shadow-sm border border-gray-200 bg-white rounded-lg">
+    <div class="bg-white rounded-lg overflow-hidden divide-y divide-gray-100">
       <%= render partial: "inquiry", collection: @inquiries, as: :inquiry %>
     </div>
   <% else %>

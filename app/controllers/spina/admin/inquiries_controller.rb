@@ -30,10 +30,6 @@ module Spina
 
     private
 
-      def inquiry_params
-        params.require(:inquiry).permit(:email, :message, :name, :phone, :read)
-      end
-
       def set_inquiry
         @inquiry = Spina::Inquiry.find(params[:id])
       end
