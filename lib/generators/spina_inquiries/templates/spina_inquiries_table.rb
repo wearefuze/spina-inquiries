@@ -1,4 +1,4 @@
-class CreateSpinaInquiriesTable < ActiveRecord::Migration[4.2]
+class CreateSpinaInquiriesTable < ActiveRecord::Migration[5.0]
   def change
     create_table :spina_inquiries do |t|
       t.string :name
@@ -6,7 +6,6 @@ class CreateSpinaInquiriesTable < ActiveRecord::Migration[4.2]
       t.string :phone
       t.text :message
       t.boolean :read, default: false
-      t.boolean :spam, default: false
 
       t.timestamps
     end

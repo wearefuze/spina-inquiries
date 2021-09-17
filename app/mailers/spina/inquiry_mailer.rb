@@ -6,14 +6,23 @@ module Spina
 
     def inquiry(inquiry)
       @inquiry = inquiry
-      @current_account = Account.first
+      current_account = Spina::Account.first
 
       mail(
-        to: "\"#{@current_account.name}\" <#{@current_account.email}>",
-        from: "no-reply@#{@current_account.name.parameterize}.com",
+        to: "#{current_account.name} <#{current_account.email}>",
+        from: from(current_account.email),
         reply_to: @inquiry.email.to_s,
-        subject: "You've recieved a message from your website",
+        subject: "Website Inquiry",
       )
+    end
+
+    private
+
+    def from(email)
+      from = email.partition("@")
+      from[0] = "noreply"
+
+      from.join
     end
   end
 end

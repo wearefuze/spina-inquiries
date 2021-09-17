@@ -1,8 +1,0 @@
-Description:
-  Generates the migration file required to create the inquiry model
-
-Example:
-  rails generate spina_inquiries:install
-
-  This will create:
-    db/migrate/timestamp_create_spina_inquiries_table.rb

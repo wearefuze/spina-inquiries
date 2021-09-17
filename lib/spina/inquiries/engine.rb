@@ -14,10 +14,8 @@ module Spina
           plugin.name = "Inquiries"
           plugin.namespace = "inquiries"
         end
-      end
 
-      config.to_prepare do
-        Rails.application.config.assets.precompile += %w[spina/inquiries/admin/inquiries.css]
+        ::Spina.config.tailwind_purge_content.concat Spina::Inquiries::Engine.root.glob("app/views/**/*.*")
       end
     end
   end
