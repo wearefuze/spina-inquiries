@@ -4,8 +4,10 @@ PATH
     spina-inquiries (0.0.1)
       filters_spam (~> 0.4)
       invisible_captcha (~> 2.0)
-      rails (~> 6.0.3, >= 6.0.3.4)
+      pg (~> 1.2)
+      rails (~> 6)
       spam_email (~> 0.1.3)
+      spina (>= 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -158,7 +160,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
-    pg (1.2.3)
+    pg (1.3.2)
     public_suffix (4.0.6)
     racc (1.5.2)
     rack (2.2.3)
@@ -285,13 +287,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  filters_spam (~> 0.4)
-  invisible_captcha (~> 2.0)
   letter_opener (~> 1.7)
-  pg (~> 1.2)
   rubocop-govuk (~> 3.17, >= 3.17.2)
-  spam_email (~> 0.1.3)
-  spina (>= 2.0)
   spina-inquiries!
 
 BUNDLED WITH
