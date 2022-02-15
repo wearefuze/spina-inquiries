@@ -1,0 +1,61 @@
+<details class="p-4">
+  <summary class="flex items-center justify-between cursor-pointer">
+    <p class="font-semibold text-gray-700">
+      Message from
+      <span class="text-spina"> <%= inquiry.name.humanize %> </span>
+
+      sent on
+      <span class="text-spina"> <%= inquiry.sent_at %> </span>
+    </p>
+
+    <div class="flex items-center space-x-4">
+      <%= button_to(mark_as_read_admin_inquiry_path(inquiry.id),
+        method: :put,
+        remote: true,
+        class: "p-1.5 border border-gray-200 rounded hover:bg-gray-100"
+      ) do %>
+        <%= heroicon("archive", style: :solid, class: "w-5 h-5 text-gray-500") %>
+      <% end %>
+
+      <%= button_to(admin_inquiry_path(inquiry.id),
+        method: :delete,
+        remote: true,
+        class: "p-1.5 border border-gray-200 rounded hover:bg-gray-100"
+      ) do %>
+        <%= heroicon("trash", style: :solid, class: "w-5 h-5 text-gray-500") %>
+      <% end %>
+    </div>
+  </summary>
+
+  <div class="mt-4 border-t border-gray-100 pt-4 space-y-4">
+    <div>
+      <p class="text-gray-600 font-semibold">
+        Email
+      </p>
+
+      <p class="text-gray-500 mt-2">
+        <%= inquiry.email %>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-gray-600 font-semibold">
+        Phone
+      </p>
+
+      <p class="text-gray-500 mt-2">
+        <%= inquiry.phone %>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-gray-600 font-semibold">
+        Message
+      </p>
+
+      <p class="text-gray-500 mt-2">
+        <%= inquiry.message %>
+      </p>
+    </div>
+  </div>
+</details>

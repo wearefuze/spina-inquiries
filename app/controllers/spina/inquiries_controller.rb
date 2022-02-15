@@ -16,7 +16,7 @@ module Spina
       @inquiry = Spina::Inquiry.new(inquiry_params)
 
       if @inquiry.save
-        Spina::InquiryMailer.inquiry(@inquiry).deliver_now unless @inquiry.invalid? || @inquiry.spam?
+        Spina::InquiryMailer.inquiry(@inquiry).deliver_now
         redirect_to thanks_inquiries_path
       else
         render :index

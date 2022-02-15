@@ -1,4 +1,4 @@
-class CreateSpinaInquiriesTable < ActiveRecord::Migration[4.2]
+class CreateSpinaInquiriesTable < ActiveRecord::Migration[5.0]
   def change
     create_table :spina_inquiries do |t|
       t.string :name

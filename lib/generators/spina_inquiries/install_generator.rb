@@ -1,13 +1,9 @@
-require "rails/generators/base"
-require "rails/generators/migration"
-require "rails/generators/active_record"
+require 'rails/generators/migration'
 
 module SpinaInquiries
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      extend ActiveRecord::Generators::Migration
-
       source_root File.expand_path("templates", __dir__)
 
       def self.next_migration_number(path)
@@ -15,12 +11,16 @@ module SpinaInquiries
       end
 
       def copy_migration_file
-        migration_template "create_spina_inquiries_table.rb", Rails.root.join("db/migrate/create_spina_inquiries_table.rb")
+        migration_template "spina_inquiries_table.rb", Rails.root.join("db/migrate/create_spina_inquiries_table.rb")
       end
 
-      def copy_view_files
-        directory 'views', Rails.root.join("app/views/spina/inquiries")
-        directory 'mailer', Rails.root.join("app/views/spina/inquiry_mailer")
+      def run_migrations
+        rake "db:migrate"
+      end
+
+      def copy_files
+        directory "views", Rails.root.join("app/views/spina/inquiries")
+        directory "email", Rails.root.join("app/views/spina/inquiry_mailer")
       end
     end
   end

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 module Spina
   class Inquiry < ActiveRecord::Base
@@ -10,14 +10,9 @@ module Spina
         author_field: :name,
         extra_spam_words:
           [
-            # commerce
             'as seen on',
             'buy',
-
-            # personal
             'meet singles',
-
-            # employment
             'additional income',
             'be your own boss',
             'double your',
@@ -32,8 +27,6 @@ module Spina
             'online biz',
             'potential earnings',
             'while you sleep',
-
-            # financial
             '$$$',
             'big bucks',
             'cashcashcash',
@@ -45,8 +38,6 @@ module Spina
             'save $',
             'save big money',
             'serious cash',
-
-            # financial business
             'credit card offers',
             'explode your business',
             'full refund',
@@ -56,8 +47,6 @@ module Spina
             'no credit check',
             'no hidden costs',
             'stock alert',
-
-            # financial personal
             'consolidate your debt',
             'elimiate bad credit',
             'eliminate debt',
@@ -66,8 +55,6 @@ module Spina
             'get paid',
             'social security number',
             'your income',
-
-            # general
             'password',
             'wife',
             'teen',
@@ -84,8 +71,6 @@ module Spina
             'for free',
             'risk free',
             'satisfaction guranteed',
-
-            # marketing
             'click below',
             'click here',
             'direct email',
@@ -103,19 +88,13 @@ module Spina
             'visit our website',
             'we hate spam',
             'website traffic',
-
-            # medical
             'lose weight',
             'weight loss',
             'remove wrinkles',
             'stop snoring',
-
-            # numbers
             '50% off',
             '100% off',
             'join millions',
-
-            # offers
             'financial freedom',
             'have you been turned down?',
             'important information regarding',
@@ -129,12 +108,8 @@ module Spina
             'prize',
             'winner',
             'you have been selected',
-
-            # calls to action
             'see for yourself',
             'sign up today',
-
-            # free
             'free consultation',
             'free hosting',
             'free installation',
@@ -155,20 +130,6 @@ module Spina
 
     scope :read, -> { where(read: true) }
     scope :unread, -> { where(read: false) }
-    scope :spam, -> { where(spam: true) }
-    scope :valid, -> { where(spam: false) }
-
-    def unread?
-      !read
-    end
-
-    def not_spam?
-      !spam
-    end
-
-    def is_new?
-      7.days.ago <= created_at
-    end
 
     def sent_at
       created_at.strftime("%e %B %Y")
